@@ -1228,12 +1228,12 @@ Se ≥ 80%: ottimizza la migliore.
                 let imageUrl;
 
                 if (config.image === 'pollinations') {
-                    // Pollinations - gratuito (genera al volo, richiede 15-20 sec)
+                    // Pollinations - gratuito (genera al volo, richiede ~30 sec)
                     const cleanPrompt = prompt.replace(/[^\w\s,.-]/g, ' ').trim();
                     imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=1024&height=1024&nologo=true`;
 
-                    // Timer countdown 20 secondi
-                    let seconds = 20;
+                    // Timer countdown 30 secondi
+                    let seconds = 30;
                     outputEl.innerHTML = `<div class="loading-img"><div class="spinner"></div><span style="margin-left:10px">Generazione in corso... <strong>${seconds}s</strong></span></div>`;
 
                     const countdown = setInterval(() => {
@@ -1243,7 +1243,7 @@ Se ≥ 80%: ottimizza la migliore.
                         if (seconds <= 0) clearInterval(countdown);
                     }, 1000);
 
-                    // Dopo 20 sec, carica l'immagine
+                    // Dopo 30 sec, carica l'immagine
                     setTimeout(async () => {
                         clearInterval(countdown);
                         outputEl.innerHTML = `<div class="loading-img"><div class="spinner"></div><span style="margin-left:10px">Caricamento immagine...</span></div>`;
@@ -1258,7 +1258,7 @@ Se ≥ 80%: ottimizza la migliore.
                             outputEl.innerHTML = '<div class="error-img">❌ Errore. Riprova.</div>';
                         }
                         btn.disabled = false;
-                    }, 20000);
+                    }, 30000);
 
                     return;
                 } else {
