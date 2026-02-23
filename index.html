@@ -832,6 +832,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="option" onclick="selectImage('skip')" id="optionSkip">
+                            <div class="option-radio"></div>
+                            <div class="option-content">
+                                <div class="option-title">
+                                    Salta (solo testi)
+                                </div>
+                                <div class="option-desc">
+                                    Non generare immagini, usa solo la generazione testi.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -901,7 +912,9 @@
         function selectImage(type) {
             document.getElementById('optionPollinations').classList.remove('selected');
             document.getElementById('optionDalle').classList.remove('selected');
-            document.getElementById('option' + (type === 'pollinations' ? 'Pollinations' : 'Dalle')).classList.add('selected');
+            document.getElementById('optionSkip').classList.remove('selected');
+            const elId = type === 'pollinations' ? 'Pollinations' : (type === 'dalle' ? 'Dalle' : 'Skip');
+            document.getElementById('option' + elId).classList.add('selected');
             config.image = type;
             updateSaveButton();
         }
@@ -967,12 +980,15 @@
             } else if (config.image === 'dalle' && config.imageKey) {
                 imgDot.className = 'status-dot ok';
                 imgText.textContent = 'Immagini: DALL-E 3';
+            } else if (config.image === 'skip') {
+                imgDot.className = 'status-dot ok';
+                imgText.textContent = 'Immagini: Disabilitate';
             } else {
                 imgDot.className = 'status-dot error';
                 imgText.textContent = 'Immagini: Non configurato';
             }
 
-            if ((config.llm && config.llmKey) && (config.image === 'pollinations' || config.imageKey)) {
+            if ((config.llm && config.llmKey) && (config.image === 'pollinations' || config.image === 'skip' || config.imageKey)) {
                 settingsBtn.classList.add('configured');
                 renderContent();
             } else {
