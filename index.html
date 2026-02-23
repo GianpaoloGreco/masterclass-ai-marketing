@@ -808,29 +808,15 @@
                 <div class="config-section">
                     <h3><span>🖼️</span> Generazione Immagini</h3>
                     <div class="option-group">
-                        <div class="option" onclick="selectImage('pollinations')" id="optionPollinations">
-                            <div class="option-radio"></div>
-                            <div class="option-content">
-                                <div class="option-title">
-                                    Pollinations.ai
-                                    <span class="badge-free">GRATIS</span>
-                                </div>
-                                <div class="option-desc">
-                                    Completamente gratuito, nessuna API key richiesta. Qualità buona.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="option" onclick="selectImage('dalle')" id="optionDalle">
+                        <div class="option selected" id="optionDalle">
                             <div class="option-radio"></div>
                             <div class="option-content">
                                 <div class="option-title">
                                     OpenAI DALL-E 3
-                                    <span class="badge-paid">A PAGAMENTO</span>
                                 </div>
                                 <div class="option-desc">
-                                    Qualità massima, usa la stessa API key di OpenAI.
+                                    Usa la stessa API key di OpenAI (inserita sopra). Qualità massima.
                                 </div>
-                                <input type="text" class="api-input" id="dalleKey" placeholder="sk-... (o usa la stessa di OpenAI sopra)" oninput="updateSaveButton()">
                             </div>
                         </div>
                     </div>
@@ -900,12 +886,7 @@
         }
 
         function selectImage(type) {
-            document.getElementById('optionPollinations').classList.remove('selected');
-            document.getElementById('optionDalle').classList.remove('selected');
-            document.getElementById('option' + (type === 'pollinations' ? 'Pollinations' : 'Dalle')).classList.add('selected');
-            document.getElementById('dalleKey').disabled = type !== 'dalle';
-            config.image = type;
-            updateSaveButton();
+            config.image = 'dalle';
         }
 
         function updateSaveButton() {
@@ -936,11 +917,9 @@
                 config.llmKey = document.getElementById('openaiKey').value.trim();
             }
 
-            if (config.image === 'dalle') {
-                config.imageKey = document.getElementById('dalleKey').value.trim() || config.llmKey;
-            } else {
-                config.imageKey = null;
-            }
+            // DALL-E usa la chiave OpenAI
+            config.image = 'dalle';
+            config.imageKey = document.getElementById('openaiKey').value.trim() || config.llmKey;
 
             saveConfig();
             updateUI();
@@ -963,10 +942,7 @@
                 llmText.textContent = 'LLM: Non configurato';
             }
 
-            if (config.image === 'pollinations') {
-                imgDot.className = 'status-dot ok';
-                imgText.textContent = 'Immagini: Pollinations (Gratis)';
-            } else if (config.image === 'dalle' && config.imageKey) {
+            if (config.imageKey) {
                 imgDot.className = 'status-dot ok';
                 imgText.textContent = 'Immagini: DALL-E 3';
             } else {
@@ -974,7 +950,7 @@
                 imgText.textContent = 'Immagini: Non configurato';
             }
 
-            if ((config.llm && config.llmKey) && config.image) {
+            if ((config.llm && config.llmKey) && config.imageKey) {
                 settingsBtn.classList.add('configured');
                 renderContent();
             } else {
@@ -1070,7 +1046,7 @@ Se ≥ 80%: ottimizza la migliore.
                 <div class="image-workflow">
                     <div class="workflow-intro">
                         <h3>🔄 Generazione Immagini AI</h3>
-                        <p>Provider: ${config.image === 'pollinations' ? 'Pollinations.ai (Gratis)' : 'DALL-E 3'}</p>
+                        <p>Provider: DALL-E 3 (OpenAI)</p>
                     </div>
                     <div class="image-steps">
                         <div class="image-step">
@@ -1227,27 +1203,7 @@ Se ≥ 80%: ottimizza la migliore.
             try {
                 let imageUrl;
 
-                if (config.image === 'pollinations') {
-                    // Pollinations - usa URL diretto
-                    const cleanPrompt = prompt.replace(/[^\w\s,.-]/g, ' ').trim();
-                    imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=1024&height=1024&nologo=true`;
-
-                    // Mostra direttamente l'immagine (il browser la carica)
-                    outputEl.innerHTML = `
-                        <div style="position:relative;">
-                            <div class="loading-img" id="loader-${id}" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;">
-                                <div class="spinner"></div>
-                                <span style="margin-left:10px">Generazione AI...</span>
-                            </div>
-                            <img src="${imageUrl}" alt="Generated"
-                                 style="max-width:100%;border-radius:8px;border:2px solid #55B4FF;min-height:200px;background:#151515;"
-                                 onload="document.getElementById('loader-${id}').style.display='none'"
-                                 onerror="this.parentElement.innerHTML='<div class=error-img>❌ Errore. Riprova.</div>'">
-                        </div>`;
-                    btn.disabled = false;
-                    return;
-                } else {
-                    // DALL-E 3
+                // DALL-E 3
                     const response = await fetch('https://api.openai.com/v1/images/generations', {
                         method: 'POST',
                         headers: {
@@ -1267,8 +1223,7 @@ Se ≥ 80%: ottimizza la migliore.
                         throw new Error(data.error.message);
                     }
                     imageUrl = data.data[0].url;
-                    outputEl.innerHTML = `<img src="${imageUrl}" alt="Generated">`;
-                }
+                    outputEl.innerHTML = `<img src="${imageUrl}" alt="Generated" style="max-width:100%;border-radius:8px;border:2px solid #55B4FF;">`;
             } catch (error) {
                 outputEl.innerHTML = `<div class="error-img">❌ ${error.message}</div>`;
             }
