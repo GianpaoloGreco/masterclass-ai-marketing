@@ -1228,22 +1228,38 @@ Se ≥ 80%: ottimizza la migliore.
                 let imageUrl;
 
                 if (config.image === 'pollinations') {
-                    // Pollinations - gratuito (genera al volo, richiede 10-30 sec)
-                    // Pulisci il prompt da caratteri problematici
+                    // Pollinations - gratuito (genera al volo, richiede 15-20 sec)
                     const cleanPrompt = prompt.replace(/[^\w\s,.-]/g, ' ').trim();
                     imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt)}?width=1024&height=1024&nologo=true`;
 
-                    // Usa fetch per gestire meglio il caricamento
-                    try {
-                        const response = await fetch(imageUrl);
-                        if (!response.ok) throw new Error('Errore generazione');
-                        const blob = await response.blob();
-                        const objectUrl = URL.createObjectURL(blob);
-                        outputEl.innerHTML = `<img src="${objectUrl}" alt="Generated" style="max-width:100%;border-radius:8px;border:2px solid #55B4FF;">`;
-                    } catch (e) {
-                        outputEl.innerHTML = '<div class="error-img">❌ Errore generazione. Riprova.</div>';
-                    }
-                    btn.disabled = false;
+                    // Timer countdown 20 secondi
+                    let seconds = 20;
+                    outputEl.innerHTML = `<div class="loading-img"><div class="spinner"></div><span style="margin-left:10px">Generazione in corso... <strong>${seconds}s</strong></span></div>`;
+
+                    const countdown = setInterval(() => {
+                        seconds--;
+                        const timerSpan = outputEl.querySelector('strong');
+                        if (timerSpan) timerSpan.textContent = seconds + 's';
+                        if (seconds <= 0) clearInterval(countdown);
+                    }, 1000);
+
+                    // Dopo 20 sec, carica l'immagine
+                    setTimeout(async () => {
+                        clearInterval(countdown);
+                        outputEl.innerHTML = `<div class="loading-img"><div class="spinner"></div><span style="margin-left:10px">Caricamento immagine...</span></div>`;
+
+                        try {
+                            const response = await fetch(imageUrl);
+                            if (!response.ok) throw new Error('Errore');
+                            const blob = await response.blob();
+                            const objectUrl = URL.createObjectURL(blob);
+                            outputEl.innerHTML = `<img src="${objectUrl}" alt="Generated" style="max-width:100%;border-radius:8px;border:2px solid #55B4FF;">`;
+                        } catch (e) {
+                            outputEl.innerHTML = '<div class="error-img">❌ Errore. Riprova.</div>';
+                        }
+                        btn.disabled = false;
+                    }, 20000);
+
                     return;
                 } else {
                     // DALL-E 3
