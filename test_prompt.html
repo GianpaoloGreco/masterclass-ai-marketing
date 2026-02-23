@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Prompt DMT - Masterclass</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #FF8055;
+        }
+
+        h1 {
+            color: #FF8055;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #888;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .panel {
+            background: #252525;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .panel-title {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .panel-title.bad { color: #d9534f; border-color: #d9534f; }
+        .panel-title.good { color: #5cb85c; border-color: #5cb85c; }
+        .panel-title.advanced { color: #9055FF; border-color: #9055FF; }
+
+        .context-box {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 3px solid #FF8055;
+        }
+
+        .context-box h3 {
+            color: #FF8055;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .context-box p {
+            font-size: 0.85em;
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: #fff;
+            padding: 15px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 14px;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #FF8055;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-copy {
+            background: #FF8055;
+            color: #000;
+        }
+
+        .btn-copy:hover {
+            background: #ff9570;
+        }
+
+        .btn-copy.copied {
+            background: #5cb85c;
+            color: #fff;
+        }
+
+        .btn-template {
+            background: #333;
+            color: #fff;
+            border: 1px solid #555;
+            font-size: 0.85em;
+            padding: 8px 15px;
+        }
+
+        .btn-template:hover {
+            background: #444;
+        }
+
+        .btn-template.active {
+            border-color: #FF8055;
+            background: #3a2a20;
+        }
+
+        .template-buttons {
+            margin-bottom: 15px;
+        }
+
+        .instructions {
+            background: #2a2a2a;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .instructions h3 {
+            color: #FF8055;
+            margin-bottom: 15px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 2;
+            color: #ccc;
+        }
+
+        .instructions code {
+            background: #1a1a1a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #FF8055;
+        }
+
+        .level-indicator {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .level-indicator.bad { background: #d9534f; }
+        .level-indicator.good { background: #5cb85c; }
+        .level-indicator.advanced { background: #9055FF; }
+
+        .json-preview {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 11px;
+            color: #888;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Test Prompt Live - DMT Cycling</h1>
+            <p class="subtitle">Masterclass AI Marketing - Esempio Post Instagram</p>
+        </header>
+
+        <div class="context-box">
+            <h3>Contesto Cliente Caricato</h3>
+            <p><strong>DMT Cycling</strong> | Scarpe ciclismo premium | Fondato 1978, Verona |
+            Atleta: Tadej Pogačar | Modelli: KR0 EVO (€409), POGI'S (€409-599), KR4 (€159) |
+            Target: ciclisti 25-55, performance-oriented | Tono: professionale, tecnico, autentico</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- COLONNA SINISTRA: INPUT -->
+            <div class="panel">
+                <h2 class="panel-title">Scrivi il Prompt</h2>
+
+                <div class="template-buttons">
+                    <button class="btn btn-template" onclick="loadTemplate('bad')">
+                        Scarso
+                    </button>
+                    <button class="btn btn-template" onclick="loadTemplate('good')">
+                        Efficace
+                    </button>
+                    <button class="btn btn-template" onclick="loadTemplate('advanced')">
+                        Avanzato
+                    </button>
+                </div>
+
+                <textarea id="promptInput" placeholder="Scrivi qui il tuo prompt..."></textarea>
+
+                <button class="btn btn-copy" onclick="copyPrompt()">
+                    📋 Copia Prompt
+                </button>
+
+                <div class="instructions">
+                    <h3>Come Usare</h3>
+                    <ol>
+                        <li>Scegli un template o scrivi il tuo prompt</li>
+                        <li>Clicca <strong>"Copia Prompt"</strong></li>
+                        <li>Vai nel terminale Claude (già aperto)</li>
+                        <li>Incolla con <code>Cmd+V</code> e premi Invio</li>
+                        <li>Guarda il risultato!</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- COLONNA DESTRA: ANTEPRIMA -->
+            <div class="panel">
+                <h2 class="panel-title">Template Disponibili</h2>
+
+                <div style="margin-bottom: 20px; padding: 15px; background: #1a1a1a; border-radius: 8px; border-left: 3px solid #d9534f;">
+                    <strong style="color: #d9534f;">SCARSO</strong>
+                    <p style="margin-top: 8px; color: #888; font-size: 0.9em;">
+                        "Scrivi un post Instagram per il nostro prodotto"
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 20px; padding: 15px; background: #1a1a1a; border-radius: 8px; border-left: 3px solid #5cb85c;">
+                    <strong style="color: #5cb85c;">EFFICACE</strong>
+                    <p style="margin-top: 8px; color: #888; font-size: 0.9em;">
+                        Include: prodotto specifico, target, tono, lunghezza, obiettivo, cosa evitare
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 20px; padding: 15px; background: #1a1a1a; border-radius: 8px; border-left: 3px solid #9055FF;">
+                    <strong style="color: #9055FF;">AVANZATO</strong>
+                    <p style="margin-top: 8px; color: #888; font-size: 0.9em;">
+                        Multi-step: genera varianti → valuta → ottimizza la migliore
+                    </p>
+                </div>
+
+                <h3 style="color: #FF8055; margin: 20px 0 10px 0; font-size: 0.9em;">JSON Cliente (riferimento)</h3>
+                <div class="json-preview" id="jsonPreview"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const templates = {
+            bad: `Scrivi un post Instagram per il nostro prodotto`,
+
+            good: `Scrivi un post Instagram per DMT Cycling, scarpe da ciclismo professionali Made in Italy.
+
+Prodotto da promuovere: KR0 EVO Superlight (€409)
+- Tecnologia 3D Knit ultraleggera e traspirante
+- BOA Fit System per chiusura micrometrica
+- Suola in carbonio per massima trasmissione potenza
+
+Target: ciclisti amatoriali evoluti, 30-50 anni, disposti a investire in attrezzatura premium, cercano performance e qualità italiana.
+
+Tono: professionale, tecnico ma accessibile, autentico (no televendita)
+Lunghezza: max 150 caratteri + 3 hashtag di nicchia
+Obiettivo: portare al link in bio per scoprire il prodotto
+Evita: emoji eccessivi, toni esagerati, hashtag generici come #love #instagood`,
+
+            advanced: `Esegui questi 3 step in sequenza per creare il miglior post Instagram possibile:
+
+CONTESTO CLIENTE:
+- Brand: DMT Cycling (scarpe ciclismo premium, Made in Italy dal 1978)
+- Prodotto: KR0 EVO Superlight €409 (3D Knit, BOA, suola carbonio)
+- Target: ciclisti 30-50 anni, performance-oriented, premium
+- Atleta di punta: Tadej Pogačar (2x Tour de France)
+- Tono: professionale, tecnico, autentico
+
+STEP 1 - GENERA VARIANTI
+Crea 5 varianti di post Instagram, ognuna con un hook diverso:
+1. Focus tecnologia
+2. Focus Made in Italy
+3. Focus performance/risultati
+4. Focus Pogačar/pro athletes
+5. Focus personalizzazione
+
+STEP 2 - VALUTA
+Agisci come Social Media Analyst esperto di cycling.
+Per ogni variante dai un punteggio 1-10 su:
+- Forza dell'hook (cattura attenzione?)
+- Chiarezza CTA
+- Rilevanza per il target ciclisti
+- Potenziale engagement
+Spiega brevemente ogni voto.
+
+STEP 3 - OTTIMIZZA
+Prendi la variante con punteggio più alto.
+Migliora incorporando i punti di forza delle altre.
+Produci la versione finale ottimizzata con:
+- Copy (max 150 char)
+- 3 hashtag di nicchia cycling
+- Suggerimento visual`
+        };
+
+        const clienteJSON = {
+            "brand": "DMT Cycling",
+            "fondazione": "1978, Verona",
+            "prodotti": ["KR0 EVO €409", "POGI'S €409-599", "KR4 €159"],
+            "tecnologie": ["3D Knit", "BOA Fit System", "Carbon Sole"],
+            "atleta": "Tadej Pogačar (2x Tour de France)",
+            "target": "Ciclisti 25-55, premium, performance",
+            "tono": "Professionale, tecnico, autentico"
+        };
+
+        // Carica JSON preview
+        document.getElementById('jsonPreview').textContent = JSON.stringify(clienteJSON, null, 2);
+
+        function loadTemplate(type) {
+            document.getElementById('promptInput').value = templates[type];
+
+            // Update button states
+            document.querySelectorAll('.btn-template').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function copyPrompt() {
+            const prompt = document.getElementById('promptInput').value;
+            const btn = document.querySelector('.btn-copy');
+
+            navigator.clipboard.writeText(prompt).then(() => {
+                btn.textContent = '✓ Copiato! Ora incolla nel terminale';
+                btn.classList.add('copied');
+
+                setTimeout(() => {
+                    btn.textContent = '📋 Copia Prompt';
+                    btn.classList.remove('copied');
+                }, 3000);
+            });
+        }
+
+        // Load bad template by default
+        loadTemplate('bad');
+    </script>
+</body>
+</html>

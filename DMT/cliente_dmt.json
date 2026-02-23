@@ -1,0 +1,214 @@
+{
+  "brand": {
+    "nome": "DMT Cycling",
+    "nome_originale": "Diamant di Federico Zecchetto",
+    "anno_fondazione": 1978,
+    "fondatore": "Federico Zecchetto",
+    "sede": "Verona, Italia",
+    "produzione": "Bosnia (factory), design e sviluppo in Italia",
+    "paese_origine": "Italia",
+    "settore": "Calzature professionali per ciclismo",
+    "posizionamento": "Premium, Made in Italy, innovazione tecnologica",
+    "slogan": "From the land of cycling"
+  },
+
+  "storia": {
+    "1978": "Fondazione come Diamant di Federico Zecchetto, produzione artigianale limitata",
+    "evoluzione": "Da piccola manifattura artigianale a brand internazionale",
+    "2018": "Lancio rivoluzionario della tecnologia 3D Knit",
+    "2020": "Inizio partnership con Tadej Pogačar",
+    "2022-2024": "Sviluppo linea POGI'S in collaborazione con Pogačar"
+  },
+
+  "tecnologie": {
+    "3D_Knit": {
+      "anno": 2018,
+      "descrizione": "Tessuto innovativo ultraleggero e traspirante, struttura variabile per ottimizzare rigidità, comfort e ventilazione"
+    },
+    "BOA_Fit_System": {
+      "descrizione": "Partnership con BOA per sistema di chiusura micrometrica"
+    },
+    "Super_Light_Carbon_Sole": {
+      "descrizione": "Suola in carbonio ultraleggera per massima trasmissione potenza"
+    },
+    "AeroSafe_Pocket": {
+      "descrizione": "Tasca integrata per riporre i lacci (modelli POGI'S)"
+    },
+    "AeroFlex_Upper": {
+      "descrizione": "Tomaia con tecnologia knit esclusiva per traspirabilità"
+    }
+  },
+
+  "prodotti": {
+    "categorie": ["Road (strada)", "MTB", "Carbon (bici da corsa)"],
+    "linee_principali": {
+      "POGIS": {
+        "descrizione": "Linea signature Tadej Pogačar",
+        "prezzo": "€409-€599",
+        "caratteristiche": "Lacci tradizionali (richiesta di Pogačar), ultraleggere",
+        "modelli": ["POGIS SUPERLIGHT", "POGIS GIRO", "POGIS TDF Limited Edition"]
+      },
+      "KR0_EVO": {
+        "descrizione": "Top di gamma con BOA",
+        "prezzo": "€409",
+        "caratteristiche": "Superlight, BOA Fit System, 3D Knit"
+      },
+      "KR1": {
+        "descrizione": "Performance alta gamma",
+        "prezzo": "€359",
+        "caratteristiche": "Carbon sole, BOA"
+      },
+      "KR4": {
+        "descrizione": "Entry level performance",
+        "prezzo": "€159 (adulto), €119 (junior)",
+        "caratteristiche": "Ottimo rapporto qualità/prezzo"
+      }
+    },
+    "usp": "Personalizzazione avanzata (colori tomaia, lingua, lacci, BOA, pelle)",
+    "taglie": "35-49",
+    "fascia_prezzo": "€119-€599"
+  },
+
+  "atleti_sponsorizzati": {
+    "star_principale": {
+      "nome": "Tadej Pogačar",
+      "team": "UAE Team Emirates - XRG",
+      "palmares": "2x Tour de France, Campione del Mondo",
+      "dal": 2020,
+      "curiosita": "Ha chiesto personalmente scarpe con lacci invece di BOA",
+      "modello_signature": "DMT POGI'S"
+    },
+    "altri_atleti": [
+      {
+        "nome": "Elia Viviani",
+        "risultato": "Oro Olimpico Rio 2016 con DMT RS1"
+      }
+    ],
+    "team": "Sponsorship personali (non team-wide)"
+  },
+
+  "target": {
+    "primario": "Ciclisti amatoriali evoluti e professionisti",
+    "eta": "25-55 anni",
+    "caratteristiche": [
+      "Performance-oriented",
+      "Tech-savvy",
+      "Attenti alla qualità Made in Italy",
+      "Disposti a investire in attrezzatura premium",
+      "Cercano personalizzazione e unicità"
+    ],
+    "mercati": ["Italia", "Germania", "Spagna", "Francia", "UK", "USA", "Canada", "Asia", "Australia"]
+  },
+
+  "brand_voice": {
+    "tono": "Professionale, tecnico, autentico",
+    "stile": "Minimalista, moderno, orientato alla performance",
+    "valori_comunicati": [
+      "Artigianalità italiana",
+      "Innovazione tecnologica",
+      "Performance ai massimi livelli",
+      "Autenticità (atleti veri, non testimonial)"
+    ],
+    "evitare": [
+      "Toni da televendita",
+      "Eccesso di emoji",
+      "Linguaggio generico/banale",
+      "Promesse esagerate"
+    ],
+    "lingue": ["IT", "EN", "DE", "ES"]
+  },
+
+  "competitor": [
+    {"nome": "Sidi", "posizionamento": "Artigianato italiano tradizionale"},
+    {"nome": "Shimano", "posizionamento": "Mass market, affidabilità"},
+    {"nome": "Specialized", "posizionamento": "Innovazione USA, premium"},
+    {"nome": "Fizik", "posizionamento": "Design italiano, comfort"},
+    {"nome": "Northwave", "posizionamento": "Italia, buon rapporto qualità/prezzo"}
+  ],
+
+  "canali": {
+    "ecommerce": "Shopify (dmtcycling.com)",
+    "social": ["Instagram", "Facebook"],
+    "email_marketing": "Klaviyo",
+    "distribuzione": "Rivenditori specializzati, bike shop premium"
+  },
+
+  "immagini_locali": {
+    "cartella": "immagini_dmt/",
+    "prodotti": [
+      {
+        "file": "DMT KR0 EVO Superlight Shoes.webp",
+        "modello": "KR0 EVO",
+        "tipo": "prodotto_frontale",
+        "colore": "White/Silver"
+      },
+      {
+        "file": "DMT KR0 EVO Superlight Shoes (1).webp",
+        "modello": "KR0 EVO",
+        "tipo": "prodotto_variante"
+      },
+      {
+        "file": "DMT KR0 EVO Superlight Shoes (2).webp",
+        "modello": "KR0 EVO",
+        "tipo": "prodotto_variante"
+      },
+      {
+        "file": "DMT KR0 EVO Superlight Shoes (3).webp",
+        "modello": "KR0 EVO",
+        "tipo": "prodotto_dettaglio"
+      },
+      {
+        "file": "DMT KR0 EVO Superlight Shoes (4).webp",
+        "modello": "KR0 EVO",
+        "tipo": "prodotto_variante"
+      },
+      {
+        "file": "DMT KR0 EVO Superlight Shoes (5).webp",
+        "modello": "KR0 EVO",
+        "tipo": "prodotto_variante"
+      },
+      {
+        "file": "DMT KR0 EVO Superlight Shoes White Bronze.webp",
+        "modello": "KR0 EVO",
+        "tipo": "prodotto_frontale",
+        "colore": "White/Bronze"
+      },
+      {
+        "file": "2026_DM1_M0010DMT26KR0-A_0085_02.webp",
+        "modello": "KR0",
+        "tipo": "catalogo_2026"
+      }
+    ],
+    "lifestyle": [
+      {
+        "file": "Pogacar DMT Cycling.webp",
+        "tipo": "atleta",
+        "descrizione": "Tadej Pogačar con scarpe DMT"
+      },
+      {
+        "file": "DMT Cycling Roc D'Azur 2025.webp",
+        "tipo": "evento",
+        "descrizione": "Evento Roc D'Azur 2025"
+      },
+      {
+        "file": "Sea Otter Europe 2025.webp",
+        "tipo": "evento",
+        "descrizione": "Sea Otter Europe 2025"
+      }
+    ],
+    "social": [
+      {
+        "file": "IG.png",
+        "tipo": "instagram_post",
+        "descrizione": "Esempio post Instagram"
+      }
+    ]
+  },
+
+  "fonti": [
+    "https://dmtcycling.com",
+    "https://www.bikeradar.com/reviews/shoes/road-bike-shoes/dmt-pogis-shoes-review",
+    "https://www.cyclingweekly.com/reviews/dmt-kr-sl-road-shoe-review",
+    "https://www.idlprocycling.com/cycling/tadej-asked-if-we-had-a-shoe-with-laces-the-story-of-pogacar-and-the-dmt-pogis-formula-for-success"
+  ]
+}
